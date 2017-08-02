@@ -2,7 +2,7 @@ body{
   background-image: url("bg.png");
 }
 
-.enemy{
+#enemy1, #enemy2, #enemy3, #enemy4{
   background-image: url("enemy.png");
   background-size: cover;
   height: 40px;

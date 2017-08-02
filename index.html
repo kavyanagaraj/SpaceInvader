@@ -10,10 +10,10 @@
   <body>
     <div id="hero"></div>
     <div id="enemy">
-      <div class="enemy" style="top:100px; left:100px"></div>
-      <div class="enemy" style="top:100px; left:300px"></div>
-      <div class="enemy" style="top:100px; left:600px"></div>
-      <div class="enemy" style="top:100px; left:900px"></div>
+      <div id="enemy1"></div>
+      <div id="enemy2"></div>
+      <div id="enemy3"></div>
+      <div id="enemy4"></div>
     </div>
     <div id="beam">
 
@@ -24,12 +24,36 @@
       top : 550, left : 600
     }
     var beam = [];
+    var enemy = {enemy1 : {name : "enemy1", top : 100, left: 100}, enemy2: {name : "enemy2", top : 100, left : 300},
+              enemy3 : {name : "enemy3", top : 100, left : 600}, enemy4 : {name : "enemy4", top : 100, left : 900}};
+
+    function displayAlien(){
+      for(key in enemy){
+        document.getElementById(enemy[key].name).style['left'] = enemy[key].left + "px";
+        document.getElementById(enemy[key].name).style['top'] = enemy[key].top + "px";
+      }
+    }
+
+    function descendAlien(){
+      var count = 0;
+      for(key in enemy){
+        enemy[key].top += 30;
+        if(enemy[key].top > 680){
+          var counter = count % 4
+          count++;
+          enemy[key].top = 0;
+          enemy[key].left = Math.floor(Math.random()*350) + (350*counter);
+          console.log(enemy[key].left);
+        }
+      }
+    }
+
     function displayHero(){
       document.getElementById("hero").style['left'] = hero.left + "px";
       document.getElementById("hero").style['top'] = hero.top + "px";
     }
 
-    function fireBeam(){
+    function displayBeam(){
       var tag = ''
       for(var i = 0; i < beam.length; i++){
         tag += "<div class='beam' style='top: " + beam[i].top + "px; left:" + beam[i].left + "px'> </div>"
@@ -37,7 +61,25 @@
       document.getElementById('beam').innerHTML = tag
     }
 
-    displayHero();
+    function shootBeam(){
+      for(var i = 0; i < beam.length; i++){
+        beam[i].top -= 30;
+        if(beam[i].top < 0){
+          beam.splice(i,1);
+        }
+      }
+    }
+
+
+    function update(){
+      displayHero();
+      shootBeam();
+      displayBeam();
+      descendAlien();
+      displayAlien();
+    }
+
+    setInterval(update, 120);
 
     //Change the position of the hero
     document.onkeydown = function(e) {
@@ -51,7 +93,8 @@
               displayHero();
               break;
           case 32:
-              beam.push({top: hero.top-30, left: hero.left+20 })
+              beam.push({top: hero.top-30, left: hero.left+20 });
+              console.log(beam);
               fireBeam();
             break;
       }
