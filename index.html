@@ -24,13 +24,17 @@
       top : 550, left : 600
     }
     var beam = [];
-    var enemy = {enemy1 : {name : "enemy1", top : 100, left: 100}, enemy2: {name : "enemy2", top : 100, left : 300},
-              enemy3 : {name : "enemy3", top : 100, left : 600}, enemy4 : {name : "enemy4", top : 100, left : 900}};
+
+    var enemy = {"enemy1" : {top : 100, left: 100},
+                  "enemy2": {top : 100, left : 300},
+                  "enemy3": {top : 100, left : 600},
+                  "enemy4": {top : 100, left : 900}};
 
     function displayAlien(){
-      for(key in enemy){
-        document.getElementById(enemy[key].name).style['left'] = enemy[key].left + "px";
-        document.getElementById(enemy[key].name).style['top'] = enemy[key].top + "px";
+      for (key in enemy){
+        eachEnemy = enemy[key]
+        document.getElementById(key).style['left'] = eachEnemy.left + "px";
+        document.getElementById(key).style['top'] = eachEnemy.top + "px";
       }
     }
 
@@ -43,7 +47,6 @@
           count++;
           enemy[key].top = 0;
           enemy[key].left = Math.floor(Math.random()*350) + (350*counter);
-          console.log(enemy[key].left);
         }
       }
     }
