@@ -15,15 +15,26 @@
       <div class="enemy" style="top:100px; left:600px"></div>
       <div class="enemy" style="top:100px; left:900px"></div>
     </div>
+    <div id="beam">
+
+    </div>
 
     <script type="text/javascript">
     var hero = {
-      top : 500, left : 600
+      top : 550, left : 600
     }
-
+    var beam = [];
     function displayHero(){
       document.getElementById("hero").style['left'] = hero.left + "px";
       document.getElementById("hero").style['top'] = hero.top + "px";
+    }
+
+    function fireBeam(){
+      var tag = ''
+      for(var i = 0; i < beam.length; i++){
+        tag += "<div class='beam' style='top: " + beam[i].top + "px; left:" + beam[i].left + "px'> </div>"
+      }
+      document.getElementById('beam').innerHTML = tag
     }
 
     displayHero();
@@ -39,6 +50,10 @@
               hero.left += 20;
               displayHero();
               break;
+          case 32:
+              beam.push({top: hero.top-30, left: hero.left+20 })
+              fireBeam();
+            break;
       }
     };
     </script>

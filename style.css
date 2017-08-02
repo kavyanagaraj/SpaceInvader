@@ -5,8 +5,8 @@ body{
 .enemy{
   background-image: url("enemy.png");
   background-size: cover;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   position: absolute;
 }
 
@@ -15,5 +15,13 @@ body{
   background-size: cover;
   height: 50px;
   width: 50px;
+  position: absolute;
+}
+
+.beam{
+  background-image: url("beam.png");
+  background-size: cover;
+  height: 20px;
+  width: 5px;
   position: absolute;
 }
