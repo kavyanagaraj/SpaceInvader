@@ -1,0 +1,19 @@
+body{
+  background-image: url("bg.png");
+}
+
+.enemy{
+  background-image: url("enemy.png");
+  background-size: cover;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+}
+
+#hero{
+  background-image: url("hero.png");
+  background-size: cover;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+}

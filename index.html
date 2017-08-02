@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Space Invaders</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </script>
+  </head>
+  <body>
+    <div id="hero"></div>
+    <div id="enemy">
+      <div class="enemy" style="top:100px; left:100px"></div>
+      <div class="enemy" style="top:100px; left:300px"></div>
+      <div class="enemy" style="top:100px; left:600px"></div>
+      <div class="enemy" style="top:100px; left:900px"></div>
+    </div>
+
+    <script type="text/javascript">
+    var hero = {
+      top : 500, left : 600
+    }
+
+    function displayHero(){
+      document.getElementById("hero").style['left'] = hero.left + "px";
+      document.getElementById("hero").style['top'] = hero.top + "px";
+    }
+
+    displayHero();
+
+    //Change the position of the hero
+    document.onkeydown = function(e) {
+      switch (e.keyCode) {
+          case 37:
+              hero.left -= 20;
+              displayHero();
+              break;
+          case 39:
+              hero.left += 20;
+              displayHero();
+              break;
+      }
+    };
+    </script>
+  </body>
+</html>
