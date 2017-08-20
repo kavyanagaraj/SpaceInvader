@@ -8,6 +8,7 @@
     </script>
   </head>
   <body>
+    <h2 id = "score1">Score : 0</h2>
     <div id="hero"></div>
     <div id="enemy">
       <div id="enemy1"></div>
@@ -24,7 +25,7 @@
       top : 550, left : 600
     }
     var beam = [];
-
+    var score = 0;
     var enemy = {"enemy1" : {top : 100, left: 100},
                   "enemy2": {top : 100, left : 300},
                   "enemy3": {top : 100, left : 600},
@@ -73,6 +74,26 @@
       }
     }
 
+    function collision(){
+      for(var i = 0; i < beam.length; i++){
+        for(var ele in enemy){
+          if(Math.abs(beam[i].top - enemy[ele].top) < 30 && Math.abs(beam[i].left - enemy[ele].left) < 30){
+            score += 10;
+            console.log("beam ", i , "and enemy ", enemy[ele] ,  "collided", score);
+            document.getElementById("score1").innerHTML = "Score : " + score;
+            beam[i].top = -1;
+            enemy[ele].top = 800;
+            // update();
+          }
+        }
+      }
+      // for(var ele in enemy){
+      //   if(Math.abs(enemy[ele].top - hero.top < 25) && Math.abs(enemy[ele].left - hero.left < 25)){
+      //     print("hero collided")
+      //   }
+      // }
+    }
+
 
     function update(){
       displayHero();
@@ -80,6 +101,7 @@
       displayBeam();
       descendAlien();
       displayAlien();
+      collision()
     }
 
     setInterval(update, 120);
@@ -97,8 +119,8 @@
               break;
           case 32:
               beam.push({top: hero.top-30, left: hero.left+20 });
-              console.log(beam);
-              fireBeam();
+              // console.log(beam);
+              shootBeam();
             break;
       }
     };
