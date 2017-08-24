@@ -2,8 +2,8 @@ body{
   background-image: url("bg.png");
 }
 
-body h2{
-  text-align: right;
+body h2, h1{
+  text-align: center;
   color : white;
 }
 
